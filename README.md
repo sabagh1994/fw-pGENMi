@@ -65,9 +65,11 @@ To run the exact pipeline in **Step 5** on your own input evidence file, the fol
    c. dist is the directory named by the regulatory distance $\in$ {10Kb, 50Kb, 200Kb, 1Mb}\
    d. dirc is the directory named by the direction of analysis $\in$ {up, down}
    Note that you should always provide absolute path to the `evid_rootdir` or its relative path to the `input` folder in the cloned repo.
-   see the config files for full instructions.
+   
 2. By default the results of all runs will be stored at the `./results` directory. To set a different path, you should update the configs
    with the abosolute path to your desired directory or its relative path to `./results` in the cloned repo.
+
+See the config files for full instructions.
    
 
 
