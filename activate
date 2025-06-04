@@ -1,0 +1,23 @@
+#!/bin/bash
+
+################################################################################
+########################### ENVIRONMENT Activation #############################
+################################################################################
+#  Note:
+#    Here you can add your own environment activation commands whether you're
+#    using conda, virtualenv, etc.
+SCRIPTDIR="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+if [[ $1 == "venv" || $1 == "" ]]; then
+  [[ ! -f ${SCRIPTDIR}/venv/bin/activate ]] && echo "venv does not exist" && return 1;
+  source ${SCRIPTDIR}/venv/bin/activate
+  export PATH=$PATH:${PROJBASE}/software/bedtools2/bin # bedtools
+elif [[ $1 == "mamba" ]]; then
+  [[ ! -f ${SCRIPTDIR}/mamba/bin/micromamba ]] && echo "mamba does not exist" && return 1;
+  export MAMBA_ROOT_PREFIX=${SCRIPTDIR}/mamba
+  eval "$(${SCRIPTDIR}/mamba/bin/micromamba shell hook -s posix)"
+  micromamba activate fwpgenmi
+  export PATH=$PATH:${PROJBASE}/software/bedtools2/bin # bedtools
+fi
+
+# use python -m pip freeze to check the packages and their versions in your environment

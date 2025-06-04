@@ -1,0 +1,41 @@
+torch==2.5.1 # '1.0.1.post2'
+numpy==1.16.2
+pandas==0.24.2
+matplotlib==3.0.3
+
+ruamel.yaml==0.17.21
+PyYAML==6.0
+
+########################################
+# Required packages for Knoweng (COCA) #
+########################################
+
+# https://github.com/KnowEnG
+# Kndatacleanup - https://github.com/KnowEnG/Data_Cleanup_Pipeline 
+# knsamplesclustering - https://github.com/KnowEnG/Samples_Clustering_Pipeline 
+# kngeneralclustering - https://github.com/KnowEnG/General_Clustering_Pipeline 
+# knspreadsheetstransformation - https://github.com/KnowEnG/Spreadsheets_Transformation 
+
+redis==3.3.8
+pyyaml==5.1.2
+xmlrunner==1.7.7
+lifelines==0.22.8
+knpackage==0.1.27
+kndatacleanup==0.1.24
+kngeneralclustering==0.1.24
+knsamplesclustering==0.1.24
+kngeneprioritization==0.1.24
+knfeatureprioritization==0.1.24
+kngenesetcharacterization==0.1.24
+knspreadsheetstransformation==0.1.27
+
+#pyyaml==5.1.2
+#xmlrunner==1.7.7 redis==3.3.8 lifelines==0.22.8
+#git+https://github.com/KnowEnG/KnowEnG_Pipelines_Library.git@mjberry/update_dependencies
+#git+https://github.com/KnowEnG/Data_Cleanup_Pipeline.git@mjberry/create_package
+#git+https://github.com/KnowEnG/General_Clustering_Pipeline.git@mjberry/create_package
+#git+https://github.com/KnowEnG/Samples_Clustering_Pipeline.git@mjberry/create_package
+#git+https://github.com/KnowEnG/Feature_Prioritization_Pipeline.git@mjberry/create_package
+#git+https://github.com/KnowEnG/Gene_Prioritization_Pipeline.git@mjberry/create_package
+#git+https://github.com/KnowEnG/Geneset_Characterization_Pipeline.git@mjberry/create_package
+#git+https://github.com/KnowEnG/Spreadsheets_Transformation.git@mjberry/create_package
