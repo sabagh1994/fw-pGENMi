@@ -9,14 +9,14 @@ To get familiar with the study design and be able to reproduce it on a different
    The data can also be accessed from [NCBI Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA659546).
 4) Preprocess the raw data, downloaded in step 2, to create input files with different evidence types for pgenmi and fwpgenmi training. 
    Navigate to `preprocess` folder and follow the instructions.
-5) Run bash scripts in `exc` folder to perform,
-   (i). Cross-validation on pgenmi/fwpgenmi,
-   (ii). Train final models using the best hyper parameters setting (regulatory distance, $L_2$ regularization coefficient)
-   (iii). Rank the transcription factors for their association to phenotype, e.g., cancer progression in this study.
-   (iv). Derive gene sets mediating the impact of highly-ranked TFs on phenotype. These sets can be used as gene signatures in survival analysis.
-   (v). Cluster multi-omics profiles of TCGA COAD patients and perform survival analysis using the gene signatures derived from (iv).
+5) Run bash scripts in `exc` folder to perform,\
+   i. Cross-validation on pgenmi/fwpgenmi.\
+   ii. Train final models using the best hyper parameters setting (regulatory distance, $L_2$ regularization coefficient).\
+   iii. Rank the transcription factors for their association to phenotype, e.g., cancer progression in this study.\
+   iv. Derive gene sets mediating the impact of highly-ranked TFs on phenotype. These sets can be used as gene signatures in survival analysis.\
+   v. Cluster multi-omics profiles of TCGA COAD patients and perform survival analysis using the gene signatures derived from (iv).
 
-Note: The evidence input files used in this study are available on google drive (download by running `exc/01_data_download.sh`), so you can skip preprocessing the raw data (Step 4).
+**Note:** The evidence input files used in this study are available on google drive (download by running `exc/01_data_download.sh`), so you can skip preprocessing the raw data (Step 4).
 
 
 ## Step 1. Clone this Repositiry
@@ -33,6 +33,10 @@ Note: Bedtools is required for preprocessing. To install it run `make bedtools`.
 To activate the virtual environments run `./activate venv` or `./activate mamba` depending on the way the environment was created.
 
 ## Step 3. Download the Data
+Run `./exc/01_data_download.sh` to download the following data from google drive,
+1. Input evidence files to train pgenmi/fwpgenmi models. The evidence files are separated by evidence type, e.g., TFBS_DiffMark,
+   regulatory distance, and direction of analysis. The files can be accessed at `./input` directory after download.
+2. Raw multi-omics data used to generate the inputs downloaded in (1). The data includes histone mark profiles, ATACseq and differential gene expression analysis for noninvasive (p0) and metastatic stages (p6). The data will be downloaded to `./preprocess/data` directory. Users interested in creating the input evidence files from scratch should download this data.
 
 
 <!--- # Data:
