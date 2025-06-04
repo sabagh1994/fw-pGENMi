@@ -16,5 +16,3 @@ add bedtools to path for easier access, 'export PATH=$PATH:${PROJBASE}/software/
                                         from step 3 followed by binarizing the evidence.
 6. `05_inputgen`: generating the final input files by aggregating the evidence over all TFs per evidence type, DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc.
 
-The preprocessing performed in this work was crucial to the success of model predictions. 
-I'd like to acknowledge [Casey R. Hanson](https://www.linkedin.com/in/caseyrhanson/) whose expertise in preprocessing set the path to the success of this study.
