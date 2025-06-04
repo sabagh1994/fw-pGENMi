@@ -48,13 +48,18 @@ Navigate to `preprocess` directory by running `cd preprocess`. Then follow the i
 Note that performing preprocessing from scratch is not required for the next steps.
 
 ## Step 5. Training pgenmi/fwpgenmi Models
-Before training the models using the configs in `configs` directory, make sure that the input evidence files are located at `./input` and divided by evidence type. Downloading the data in **Step 3** directly saves the input files to `./input` directory. All the scripts for this step are located at `./exc` directory. These bash scripts run python codes that are configured with config files located at `./configs` directory.
+Before training the models using the configs in `configs` directory, make sure that the input evidence files are located at `./input` and divided by evidence type. Downloading the data in **Step 3** directly saves the input files to `./input` directory. All the scripts for this step are located at `./exc` directory. These bash scripts run python codes that are configured with config files located at `./configs` directory.\
+
+
 **Cross validation and TF Rankings.**
+
 Run `./exc/02_cross_valid.sh pgenmi`, or `./exc/02_cross_valid.sh fwpgenmi`. This script performs,
 1. cross validation for different values of two hyperparameters, regulatory distance and $L_2$-regularization coefficient. This is done by running `src/cv_pgenmi.py`
    on `configs/01_cfg_cv_{model_type}_H1.yml` and `configs/01_cfg_cv_{model_type}_H0.yml` config files, where model_type $\in$ {pgenmi, fwpgenmi}.
-2. Choosing the best hyperparameter setting, training the model on the best setting, and ranking the TFs.
-Then the model gets trained on the entire dataset using the best hyperparameter values. Finally the TF rankings are generated using the trained model.
+2. Aggregate the cross validation results to pick the best hyperparameter setting, training the model on the best setting, and ranking the TFs.
+   This is done by running `scr/cvaggr_tr_evidrank.py` using the config `configs/03_cfg_cvaggr_tr_evidrank_{model_type}.yml`.
+
+## Input Evidence File Format
 
 ## Paths in the Config Files
 To run the exact pipeline in **Step 5** on your own input evidence file, the following requirements should be met,
