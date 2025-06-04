@@ -20,11 +20,11 @@ To get familiar with the study design and be able to reproduce it on a different
 Note: The evidence input files used in this study are available on google drive (download by running `exc/01_data_download.sh`), so you can skip preprocessing the raw data (Step 4).
 
 
-*** Step 1. Clone this Repositiry ***
+## Step 1. Clone this Repositiry
 1. Clone the repository, `git clone https://github.com/sabagh1994/fw-pGENMi.git`
 2. Navigate to the cloned directory, `cd fw-pGENMi`
 
-*** Step 2. Make a Virtual Environemnt ***
+## Step 2. Make a Virtual Environemnt
 You need to create your own environment with the required packages installed. There are two ways to create a virtual environment, (1) mamba and (2) python venv module, as described in the following,
 1. To make a virtual environment using mamba run `make mamba`. This will download micromamba and install Python 3.11 followed by all the packages 
    required for this project listed in `requirements.txt`.
@@ -33,10 +33,10 @@ You need to create your own environment with the required packages installed. Th
 Note: Bedtools is required for preprocessing. To install it run `make bedtools`.
 To activate the virtual environments run `./activate venv` or `./activate mamba` depending on the way the environment was created.
 
-*** Step 3. Download the data ***
+## Step 3. Download the Data
 
 
-# Data:
+<!--- # Data:
 
 To get the processed evidence files used as the input of pgenmi/fwpgenmi
 download, wget, ... . This will result in a folder named "input" in the fw-pgenmi folder.
@@ -60,3 +60,4 @@ After training the model in step 1, navigate to mediator_genest folder to get th
 # Step 3: Survival Analysis:
 
 To cluster multi-omics profiles of TCGA-COAD (colorectal cancer) patients, navigate to coca folder. Most of the functions used for this step are adapted from https://knoweng.github.io.
+-->
