@@ -1,7 +1,6 @@
 # An Integrated Multi-Omics Approach to Identify Regulatory Mechanisms in Cancer Metastatic Processes
 
-This repository contains the code used for ["An integrated multi-omics approach to identify regulatory mechanisms in cancer metastatic processes"](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02213-x).\\
-
+This repository contains the code used for ["An integrated multi-omics approach to identify regulatory mechanisms in cancer metastatic processes"](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02213-x), published in Genome Biology 2021.
 ## Summary
 To get familiar with the study design and be able to reproduce it on a different multi-omics dataset, the following steps should be performed in the given order,
 1) Clone the repository to create a local copy of it on your machine.
