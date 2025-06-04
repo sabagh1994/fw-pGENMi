@@ -59,9 +59,9 @@ Run `./exc/02_cross_valid.sh pgenmi`, or `./exc/02_cross_valid.sh fwpgenmi`. Thi
 2. Aggregate the cross validation results to pick the best hyperparameter setting, training the model on the best setting, and ranking the TFs.
    This is done by running `scr/cvaggr_tr_evidrank.py` using the config `configs/03_cfg_cvaggr_tr_evidrank_{model_type}.yml`.
 
-## Input Evidence File Format
+### Input Evidence File Format
 
-## Paths in the Config Files
+### Paths in the Config Files
 To run the exact pipeline in **Step 5** on your own input evidence file, the following requirements should be met,
 1. The input evidence files should have the same directory architecture as the `input` folder. The directory structure is
    `{evid_rootdir}/{evid_type}/{dist}/{dirc}/H*_{dirc}`, where
