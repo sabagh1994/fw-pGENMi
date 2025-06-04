@@ -47,7 +47,28 @@ Navigate to `preprocess` directory by running `cd preprocess`. Then follow the i
 3. Create the input evidence files for different evidence types, direction of analysis, and regulatory distances.
 Note that performing preprocessing from scratch is not required for the next steps.
 
-## Step 5. Training pgenmi/fwpgenmi models
+## Step 5. Training pgenmi/fwpgenmi Models
+Before training the models using the configs in `configs` directory, make sure that the input evidence files are located at `./input` and divided by evidence type. Downloading the data in **Step 3** directly saves the input files to `./input` directory. All the scripts for this step are located at `./exc` directory. These bash scripts run python codes that are configured with config files located at `./configs` directory.
+**Cross validation and TF Rankings.**
+Run `./exc/02_cross_valid.sh pgenmi`, or `./exc/02_cross_valid.sh fwpgenmi`. This script performs,
+1. cross validation for different values of two hyperparameters, regulatory distance and $L_2$-regularization coefficient. This is done by running `src/cv_pgenmi.py`
+   on `configs/01_cfg_cv_{model_type}_H1.yml` and `configs/01_cfg_cv_{model_type}_H0.yml` config files, where model_type $\in$ {pgenmi, fwpgenmi}.
+2. Choosing the best hyperparameter setting, training the model on the best setting, and ranking the TFs.
+Then the model gets trained on the entire dataset using the best hyperparameter values. Finally the TF rankings are generated using the trained model.
+
+## Paths in the Config Files
+To run the exact pipeline in **Step 5** on your own input evidence file, the following requirements should be met,
+1. The input evidence files should have the same directory architecture as the `input` folder. The directory structure is
+   `{evid_rootdir}/{evid_type}/{dist}/{dirc}/H*_{dirc}`, where
+   a. evid_rootdir is the root directory to all evidence types.
+   b. evid_type is the directpry named by the evidence type $\in$ {TFBS_DiffMark, TFBS_only, TFBS_DiffACC, etc}\
+   c. dist is the directory named by the regulatory distance $\in$ {10Kb, 50Kb, 200Kb, 1Mb}\
+   d. dirc is the directory named by the direction of analysis $\in$ {up, down}
+   Note that you should always provide absolute path to the `evid_rootdir` or its relative path to the `input` folder in the cloned repo.
+   see the config files for full instructions.
+2. By default the results of all runs will be stored at the `./results` directory. To set a different path, you should update the configs
+   with the abosolute path to your desired directory or its relative path to `./results` in the cloned repo.
+   
 
 
 <!--- # Data:
