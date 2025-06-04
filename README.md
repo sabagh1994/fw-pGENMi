@@ -5,9 +5,9 @@ This repository contains the code used for ["An integrated multi-omics approach 
 To get familiar with the study design and be able to reproduce it on a different multi-omics dataset, the following steps should be performed in the given order,
 1) Clone the repository to create a local copy of it on your machine.
 2) Make a virtual environment and install the required packages.
-3) Download the raw data for this study containing the histone mark peaks, ATACseq and differential gene expression statistics from google drive.
-   The data can also be accessed from [NCBI Sequence Read Archive (SRA)](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA659546).
-4) Preprocess the raw data, downloaded in step 2, to create input files with different evidence types for pgenmi and fwpgenmi training. 
+3) Download the multi-omics data for this study containing the histone mark peaks, accessibility peaks and differential gene expression statistics from google drive.
+   The *raw* data can be accessed from [NCBI Sequence Read Archive (SRA)-PRJNA659546](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA659546).
+4) Preprocess the multi-omics data, downloaded from google drive in step 2, to create input files with different evidence types for pgenmi and fwpgenmi training. 
    Navigate to `preprocess` folder and follow the instructions.
 5) Run bash scripts in `exc` folder to perform,\
    i. Cross-validation on pgenmi/fwpgenmi.\
@@ -16,7 +16,7 @@ To get familiar with the study design and be able to reproduce it on a different
    iv. Derive gene sets mediating the impact of highly-ranked TFs on phenotype. These sets can be used as gene signatures in survival analysis.\
    v. Cluster multi-omics profiles of TCGA COAD patients and perform survival analysis using the gene signatures derived from (iv).
 
-**Note:** The evidence input files used in this study are available on google drive (download by running `exc/01_data_download.sh`), so you can skip preprocessing the raw data (Step 4).
+**Note:** The evidence input files used in this study are available on google drive (download by running `exc/01_data_download.sh`), so you can skip preprocessing the multi-omics data (Step 4).
 
 
 ## Step 1. Clone this Repositiry
@@ -28,15 +28,26 @@ You need to create your own environment with the required packages installed. Th
 1. To make a virtual environment using mamba run `make mamba`. This will download micromamba and install Python 3.11 followed by all the packages 
    required for this project listed in `requirements.txt`.
 2. If instead you would like to use python venv, first you need to have python installed. Then run `make venv`.
+3. Bedtools is required for preprocessing. To install it run `make bedtools`.
 
-Note: Bedtools is required for preprocessing. To install it run `make bedtools`.
 To activate the virtual environments run `./activate venv` or `./activate mamba` depending on the way the environment was created.
 
 ## Step 3. Download the Data
 Run `./exc/01_data_download.sh` to download the following data from google drive,
 1. Input evidence files to train pgenmi/fwpgenmi models. The evidence files are separated by evidence type, e.g., TFBS_DiffMark,
    regulatory distance, and direction of analysis. The files can be accessed at `./input` directory after download.
-2. Raw multi-omics data used to generate the inputs downloaded in (1). The data includes histone mark profiles, ATACseq and differential gene expression analysis for noninvasive (p0) and metastatic stages (p6). The data will be downloaded to `./preprocess/data` directory. Users interested in creating the input evidence files from scratch should download this data.
+2. Multi-omics data used to generate the inputs downloaded in (1). The data includes histone mark profiles, accessibility peaks and differential gene expression analysis for noninvasive (p0) and metastatic stages (p6). The data will be downloaded to `./preprocess/data` directory. Users interested in creating the input evidence files from scratch should download this data.
+
+**Note** The *raw* data has been deposited to [NCBI Sequence Read Archive (SRA)-PRJNA659546](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA659546). But you only need the multi-omics data downloaded from google drive to generate the input evidence files. 
+
+## Step 4. Preprocess the Multi-Omics Data
+Navigate to `preprocess` directory by running `cd preprocess`. Then follow the instructions to, 
+1. Download TF ChIP-seq profiles from Encode,
+2. Intersect the TF bindings sites with epigenetic mark/accessibility peaks, and
+3. Create the input evidence files for different evidence types, direction of analysis, and regulatory distances.
+Note that performing preprocessing from scratch is not required for the next steps.
+
+## Step 5. Training pgenmi/fwpgenmi models
 
 
 <!--- # Data:
