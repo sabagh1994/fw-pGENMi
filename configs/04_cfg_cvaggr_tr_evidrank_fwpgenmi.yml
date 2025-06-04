@@ -1,0 +1,30 @@
+# Note: PROJPATH represents the absolute path to the root of project folder
+description: |- 
+  Config for 
+    1) Aggregating the cross validation results to identify the best
+       hypermarameter setting (regulatory distance, L2 regularization coeff)
+    2) Training fwpgenmi on the best hyperparameter setting, and
+    3) Ranking the transcription factors using the trained model
+folds: 100 # Number of cv experiments
+model_type: fwpgenmi # type of the model \in {fwpgenmi, pgenmi}
+aggr_outdir: cv_aggr_results # Path to store the resulst of cv aggregation. 
+                             # Provide absolute path or relative path to {PROJPATH}/results
+evid_sig_outdir: evid_significance # Path to store the results of TF ranking, i.e. evidence significance
+                                   # Provide absolute path or relative path to {PROJPATH}/results
+                                   # Directory for relative path {PROJPATH}/results/{evid_sig_outdir}
+cv_results_dir: cv_results # Path to the cross validation results. Provide an abosulte path
+                           # or a relative path to {PROJPATH}/results
+model_outdir: fwpgenmi_final_results # Path to save the trained model
+                                     # Provide absolute path or relative path to {PROJPATH}/results
+                                     # Directory structure for relative path: 
+                                     # {PROJPATH}/results/{model_outdir}/{evid_type}/{dirc}/H*
+evid_dir: ./ # Path to the evidence input files. Provide an absolute path or a relative path to {PROJPATH}/input. 
+             # Contains subdirectories specific to each evidence type 
+             # e.g., if indir='./' then {PROJPATH}/input contains folders for TFBS_DiffMark, TFBS_DiffACC, etc.
+             # The input evidence files are stored at {indir}/{evid_type}/{dist}/{dirc}/H*_{dirc}
+             # for (evidence evid_type, distance dist, direction dirc, and H* (H0/H1))
+evidences: [TFBS_DiffMark] # List of evidence types to aggregate cv results on 
+dircs: [up, down] # List of directions of analysis to aggregate cv results on 
+tf_dim: 20 # Number of TFs
+mark_dim: 8 # Number of marks x dimension of mark's representation. This depends on the 
+            # evidence type, e.g., TFBS_DiffMark: 8 (4x2), TFBS_PresMark: 4 (4x1), TFBS_DiffACC: 2 (2x1)

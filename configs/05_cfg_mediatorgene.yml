@@ -1,0 +1,28 @@
+# Note: PROJPATH represents the absolute path to the root of project folder
+# ----------------------------------------------------------------------------------
+# Prior to getting the mediator gene sets, make sure the following steps are done,
+#   1. Training a pgenmi model.
+#   2. Getting the TF rankings for the trained model.
+# ----------------------------------------------------------------------------------
+description: |-
+  Configs used to generate mediator gene sets based on different criteria, e.g post odds ratio (POR), ratio of post odds ratio (RPOR)
+outdir: mediator_genes # Path to save the mediator gene sets. 
+                       # Provide absolute path or relative path to {PROJPATH}/results
+                       # with the current value the final path is {PROJPATH}/results/mediator_genes
+evid_dir: ./ # Path to the evidence input files. Provide an absolute path or a relative path to {PROJPATH}/input. 
+             # Contains subdirectories specific to each evidence type 
+             # e.g., if indir='./' then {PROJPATH}/input contains folders for TFBS_DiffMark, TFBS_DiffACC, etc.
+             # The input evidence files are stored at {indir}/{evid_type}/{dist}/{dirc}/H*_{dirc}
+             # for (evidence evid_type, distance dist, direction dirc, and H* (H0/H1))
+trained_model_dir: pgenmi_final_results # Path to the pretrained model 
+                                        # Provide an absolute path or a relative path to {PROJPATH}/results
+dircs: [up, down] # List of directions of analysis to generate mediator gene sets for
+evid_type: TFBS_DiffMark # Type of regulatory evidence used for training the model 
+dist: 50Kb # Regulatory distance \in {10Kb, 50Kb, 200Kb, 1Mb}, 50Kb was used in the paper
+top_gene_counts: [20, 50, 70, 100] # List of integers. Per X value in the list, 
+                                   # top X genes based on POR or RPOR are chosen as mediator genes.
+top_TF_counts: [5], # List of integers. Per X value in the list, union of top X TFs for both analyses (up,down) is taken.
+                    # per gene, product of RPORs for the TFs in the union will be computed. The product of RPORs is used 
+                    # to get the final mediator gene set.
+evid_sig_outdir: evid_significance # Path to the saved TF rankings.  
+                                   # Provide an absolute path or a relative path to {PROJPATH}/results

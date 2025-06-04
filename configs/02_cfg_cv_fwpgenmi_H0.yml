@@ -1,0 +1,25 @@
+# Note: PROJPATH represents the absolute path to the root of project folder
+description: |-
+  Configs used for cross validation (cv) on fwpgenmi. Cross validation is performed 
+  to determine the best regulatory distance and L2 regularization coeff.
+folds: 100 # number of cv experiments.
+is_H0: true # H0 vs H1 model. H1 (true) model uses regulatory evidence (true), whereas H0 (false) does not.
+outdir: cv_results # Path to save the cross validation results. Provide an abosulte path
+                   # or a relative path to {PROJPATH}/results.
+                   # With the current value the final path is {PROJPATH}/results/cv_results
+                   # The directory structure of the saved results {PROJPATH}/results/cv_results/{evid_type}/H*/*
+indir: ./   # Path to the evidence input files. Provide an absolute path or a relative path to {PROJPATH}/input. 
+            # Contains subdirectories specific to each evidence type 
+            # e.g., if indir='./' then {PROJPATH}/input contains folders for TFBS_DiffMark, TFBS_DiffACC, etc.
+            # The input evidence files are stored at {indir}/{evid_type}/{dist}/{dirc}/H*_{dirc}
+            # for (evidence evid_type, distance dist, direction dirc, and H* (H0/H1))
+evid_type: TFBS_DiffMark # Type of the regulatory evidence
+                         # Note that for TFBS_only, pgenmi should be used for cross validation.
+perc: 0.8 # the split ratio for train set. 0.8/0.2 train/test split
+dircs: [up, down] # List of directions of analysis included in cv
+distances: [10Kb, 50Kb, 200Kb, 1Mb] # List of regulatory distances to perform cv on
+lambdas: [100, 10, 1, 0.1, 0.01, 0.001, 0.0] # List of L2 regularization coeffs to explore.
+                                             # Set to [0.0] when H0 model is used. 
+tf_dim: 20 # Number of TFs
+mark_dim: 8 # Number of marks x dimension of mark's representation. This depends on the 
+            # evidence type, e.g., TFBS_DiffMark: 8 (4x2), TFBS_PresMark: 4 (4x1), TFBS_DiffACC: 2 (2x1)
