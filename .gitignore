@@ -1,0 +1,58 @@
+test.sh
+test.py
+sanity_checks
+*_.pl
+*_.sh
+evidence_aggregator.ipynb
+.coords.sh
+mynotes
+
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+**__pycache**
+**.mp4
+**/.ftpconfig
+**/.ipynb_checkpoints
+.ipynb_checkpoints**
+trash
+.idea
+.vscode
+joblogs
+mamba
+venv
+venv2
+storage
+
+### macOS ###
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
