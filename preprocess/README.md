@@ -1,4 +1,9 @@
-### Preprocessing of the Histone Marks and Accessibility Peaks
+## Preprocessing of the Histone Marks and Accessibility Peaks
+Follow the instructions below to generate input evidence files by intersecting TF binding sites with histone mark and accesibility peaks.
+It is assumed that peak calling has been performed on the raw data. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/master/README.md)** to download the data before running the preprocessing pipeline explained below. 
+
+### Summary
+
 
 To create the input for running pgenmi and fwpgenmi, execute the codes in each directory in the following order.
 You need to have [bedtools](https://bedtools.readthedocs.io/en/latest/) installed to preprocess the peaks and their overlaps with TF binding sites.
