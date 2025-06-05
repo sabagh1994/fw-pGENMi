@@ -69,30 +69,30 @@ This script runs `src/geneset_gen.py` with the config `configs/05_cfg_mediatorge
 
 1. First you need to download the multi-omics profiles for TCGA COAD patients from [UCSAC Xena](https://xenabrowser.net/datapages/?cohort=GDC%20TCGA%20Colon%20Cancer%20(COAD)&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443). Once downloaded move all data to the same folder named `GDC_TCGA_COAD`.
 The structure of this folder should look like the following. You can either move `GDC_TCGA_COAD` to `./input` directory or provide its relative path to the `./input` directory in the config file used for generating the input for clustering (`configs/06_cfg_coca_inputgen.yml`) as explained below.
-```
-GDC_TCGA_COAD/
-├── CopyNo_segment
-│   └── TCGA-COAD.masked_cnv.tsv
-├── Gene_Expr
-│   ├── RNA-seq_Counts
-│   │   ├── gencode.v22.annotation.gene.probeMap
-│   │   └── TCGA-COAD.htseq_counts.tsv
-│   └── RNA-seq_FPKM
-│       ├── gencode.v22.annotation.gene.probeMap
-│       └── TCGA-COAD.htseq_fpkm.tsv
-├── Methyl_450
-│   ├── illuminaMethyl450_hg38_GDC
-│   └── TCGA-COAD.methylation450.tsv
-├── miRNA
-│   ├── hsa_MTI.xlsx
-│   ├── mir_gene_target.csv
-│   └── TCGA-COAD.mirna.tsv
-├── Phenotype_Survival
-│   ├── TCGA-COAD.GDC_phenotype.tsv
-│   └── TCGA-COAD.survival.tsv
-└── Somatic_MuSEVariantAggr
-    └── TCGA-COAD.muse_snv.tsv
-```
+   ```
+   GDC_TCGA_COAD/
+   ├── CopyNo_segment
+   │   └── TCGA-COAD.masked_cnv.tsv
+   ├── Gene_Expr
+   │   ├── RNA-seq_Counts
+   │   │   ├── gencode.v22.annotation.gene.probeMap
+   │   │   └── TCGA-COAD.htseq_counts.tsv
+   │   └── RNA-seq_FPKM
+   │       ├── gencode.v22.annotation.gene.probeMap
+   │       └── TCGA-COAD.htseq_fpkm.tsv
+   ├── Methyl_450
+   │   ├── illuminaMethyl450_hg38_GDC
+   │   └── TCGA-COAD.methylation450.tsv
+   ├── miRNA
+   │   ├── hsa_MTI.xlsx
+   │   ├── mir_gene_target.csv
+   │   └── TCGA-COAD.mirna.tsv
+   ├── Phenotype_Survival
+   │   ├── TCGA-COAD.GDC_phenotype.tsv
+   │   └── TCGA-COAD.survival.tsv
+   └── Somatic_MuSEVariantAggr
+       └── TCGA-COAD.muse_snv.tsv
+   ```
 
 2. Run `src/04_coca.sh` to generate inputs for clustering using different sets of mediator genes, cluster the multi-omics profiles of TCGA COAD patients and perform survival analysis for each cluster of patients. This is done by running the following scripts,\
    **a.** `scr/coca_inputgen.py` using config `configs/06_cfg_coca_inputgen.yml`. Generates different input files by subsetting the multi-omics profiles to different gene sets. For details please read the paper.\
@@ -101,16 +101,71 @@ GDC_TCGA_COAD/
    **d.** `src/coca_stats_aggr.py` using config `configs/08_cfg_coca_aggr.yml`. Aggregate the results of clustering and survival analysis in (c) performed with different settings.
 
 ### Input Evidence File Format
+All input evidence files are tab-delimited and start with the column names starting from DE pvalue of genes. The format is shown by evidence type below.
+
+**TFBS_DiffMark**
+Columns are DE pvalue (PVAL), constant (CONST), [TF_mark_up, TF_mark_down] for all (TF, mark) pairs. Each row contains the regulatory evidence of a gene.
+An example of this evidence file is shown for two TFs (ATF3, CBX) and two histone marks (H3K27ac, H3K27me3). The constant column is an all-ones column.
+```
+PVAL    CONST   ATF3_K27ac_up   ATF3_K27ac_down   ATF3_K27me3_up  ATF3_K27me3_down   CBX3_K27ac_up   CBX3_K27ac_down   CBX3_K27me3_up  CBX3_K27me3_down
+ZZEF1   0.062     1                0                   0                0                  0                0                0                0            0
+```
+**TFBS_DiffACC**
+Columns are DE pvalue (PVAL), constant (CONST), [TF_ACC_up, TF_ACC_down] for all TFs.
+```
+PVAL    CONST   ATF3_ACC_up     ATF3_ACC_down   CBX3_ACC_up     CBX3_ACC_down   CEBPB_ACC_up    CEBPB_ACC_down  CTCF_ACC_up
+ZZEF1   0.93      1                   0             0                0               0                0             0           0      
+
+```
+**TFBS_only**
+Columns are DE pvalue (PVAL), constant (CONST), [TF] for all TFs.
+```
+PVAL    CONST   SP1     CTCF    POLR2AphosphoS5
+ZZEF1   0.93     1         0           1          0
+```
+
+**TFBS_PresMark**
+Columns are DE pvalue (PVAL), constant (CONST), [TF_mark_pres] for all (TF, mark) pairs.
+An example of this evidence file is shown for two TFs (ATF3, CBX) and two histone marks (H3K27ac, H3K27me3).
+```
+PVAL    CONST   ATF3_K27ac_pres ATF3_K27me3_pres  CBX3_K27ac_pres CBX3_K27me3_pres
+ZZEF1   0.062        1                0                0                 0           0 
+
+```
+
 
 ### Paths in the Config Files
 To run the exact pipeline in **Step 5** on your own input evidence file, the following requirements should be met,
-1. The input evidence files should have the same directory architecture as the `input` folder. The directory structure is
+1. The input evidence files should have the same directory architecture as the `input` folder shown below for a subset of regulatory distances. The directory structure is
    `{evid_rootdir}/{evid_type}/{dist}/{dirc}/H*_{dirc}`, where\
    **a.** evid_rootdir is the root directory to all evidence types.\
    **b.** evid_type is the directpry named by the evidence type $\in$ {TFBS_DiffMark, TFBS_only, TFBS_DiffACC, etc}\
    **c.** dist is the directory named by the regulatory distance $\in$ {10Kb, 50Kb, 200Kb, 1Mb}\
    **d.** dirc is the directory named by the direction of analysis $\in$ {up, down}
    Note that you should always provide absolute path to the `evid_rootdir` or its relative path to the `input` folder in the cloned repo.
+   ```
+   input/
+   ├── TFBS_DiffACC
+   │   ├── 1Mb
+   │   │   ├── down
+   │   │   │   ├── H0_down
+   │   │   │   └── H1_down
+   │   │   └── up
+   │   │       ├── H0_up
+   │   │       └── H1_up
+   │   └── 50Kb
+   │       ├── down
+   │       │   ├── H0_down
+   │       │   └── H1_down
+   │       └── up
+   │           ├── H0_up
+   │           └── H1_up
+   ├── TFBS_DiffMark
+   │   ├── 10Kb
+   │   │   ├── down
+   │   │   │   ├── H0_down
+   
+   ```
    
 2. By default the results of all runs will be stored at the `./results` directory. To set a different path, you should update the configs
    with the abosolute path to your desired directory or its relative path to `./results` in the cloned repo.
