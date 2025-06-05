@@ -48,7 +48,7 @@ Navigate to `preprocess` directory by running `cd preprocess`. Then follow the i
 Note that performing preprocessing from scratch is not required for the next steps.
 
 ## Step 5. Training pgenmi/fwpgenmi Models
-Before training the models using the configs in `configs` directory, make sure that the input evidence files are located at `./input` and divided by evidence type. Downloading the data in **Step 3** directly saves the input files to `./input` directory. All the scripts for this step are located at `./exc` directory. These bash scripts run python codes that are configured with config files located at `./configs` directory.\
+Before training the models using the configs in `configs` directory, make sure that the input evidence files are located at `./input` and divided by evidence type. Downloading the data in **Step 3** directly saves the input files to `./input` directory. All the scripts for this step are located at `./exc` directory. These bash scripts run python codes that are configured with config files located at `./configs` directory.
 
 
 **(A) Cross validation and TF Rankings.**
