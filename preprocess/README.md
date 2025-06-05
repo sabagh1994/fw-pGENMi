@@ -1,14 +1,14 @@
 ## Preprocessing of the Histone Marks and Accessibility Peaks
 Follow the instructions below to generate input evidence files by intersecting TF binding sites with histone mark and accesibility peaks.
-It is assumed that peak calling has been performed on the raw data. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/blob/master/README.md#download-data)** to download the data before running the preprocessing pipeline explained below. 
+It is assumed that peak calling has been performed on the raw data.
 
 ### Summary
+Make sure the following steps have been done before preprocessing.
+1. Install [bedtools](https://github.com/sabagh1994/fw-pGENMi/tree/master/README.md#make-venv)
+2. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/blob/master/README.md#download-data)** to download the multi-omics data. The downloaded data will be stored at `preprocess/data` directory.
+3. Run the preprocessing as explained below. 
 
-
-To create the input for running pgenmi and fwpgenmi, execute the codes in each directory in the following order.
-You need to have [bedtools](https://bedtools.readthedocs.io/en/latest/) installed to preprocess the peaks and their overlaps with TF binding sites.
-See the instructions in Makefile in the project base directory for more details. 
-add bedtools to path for easier access, 'export PATH=$PATH:${PROJBASE}/software/bedtools2/bin # bedtools'
+### Preprocessing
 
 1. `01_gencode`: Gene locations in genome. you should download the right version for human genome.
 2. `02_encode`: Download TF Binding profiles from ENCODE and process them.
@@ -20,4 +20,3 @@ add bedtools to path for easier access, 'export PATH=$PATH:${PROJBASE}/software/
 5. `04_epi_analysis/02_intersect_tfbs`: Intersection of step4 (diffmark, presmark) with TFBS computed at varying regulatory distances
                                         from step 3 followed by binarizing the evidence.
 6. `05_inputgen`: generating the final input files by aggregating the evidence over all TFs per evidence type, DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc.
-
