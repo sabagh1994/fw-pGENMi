@@ -28,14 +28,17 @@ Make sure the following steps have been done before preprocessing.
 3. Run the preprocessing as explained below. 
 
 ### Preprocessing
-
-1. `01_gencode`: Gene locations in genome. you should download the right version for human genome.
-2. `02_encode`: Download TF Binding profiles from ENCODE and process them.
-3. `03_overlap`: Finding the TFBS associated with genes at varying regulatory distances 10Kb, 50Kb, 200Kb and 1Mb.
-4. `04_epi_analysis/01_bedtools_mark_acc`: Finding the differential mark peaks locations, i.e., gain/loss of peak in p0/p6 (diffmark), 
+Preprocessing should be done in the following order,
+1. **Gencode.** `cd 01_gencode` then run `./runme.sh`. Downloads the human genome to get the gene coordinates and produces a list of protein coding genes. Make sure that you download the right version of human geneome for your application.
+2. **Encode.** `cd 02_encode` then run `./runme.sh`. Downloads TF Binding profiles from ENCODE for HCT116 cell line. The final processed bed file is `02_encode/tfs.bed10.sorted` with the following format for each line,
+   ```
+   chr1    91035   91451   CTCF    612     .       19.55880        -1.00000        5.12429 208
+   ```
+4. **Overlap.** `cd 03_overlap`, then run `./runme1.sh` followed by `./runme2.sh`. Identifies TF binding sites overlapping with intergenic and intronic regions. Then associates TF binding sites with genes at varying regulatory distances 10Kb, 50Kb, 200Kb and 1Mb.
+5. `04_epi_analysis/01_bedtools_mark_acc`: Finding the differential mark peaks locations, i.e., gain/loss of peak in p0/p6 (diffmark), 
                                            as well as the presence of mark in either of the stages noninvasive-p0/metastatic-p6 (presmark).
                                            Here 'mark' stands for both histone mark and accessibility.
                                            
-5. `04_epi_analysis/02_intersect_tfbs`: Intersection of step4 (diffmark, presmark) with TFBS computed at varying regulatory distances
+6. `04_epi_analysis/02_intersect_tfbs`: Intersection of step4 (diffmark, presmark) with TFBS computed at varying regulatory distances
                                         from step 3 followed by binarizing the evidence.
-6. `05_inputgen`: generating the final input files by aggregating the evidence over all TFs per evidence type, DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc.
+7. `05_inputgen`: generating the final input files by aggregating the evidence over all TFs per evidence type, DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc.
