@@ -25,6 +25,7 @@ To get familiar with the study design and be able to reproduce it on a different
 1. Clone the repository, `git clone https://github.com/sabagh1994/fw-pGENMi.git`
 2. Navigate to the cloned directory, `cd fw-pGENMi`
 
+<a id="make-venv"></a>
 ## Step 2. Make a Virtual Environemnt
 You need to create your own environment with the required packages installed. There are two ways to create a virtual environment, (1) mamba and (2) python venv module, as described in the following,
 1. To make a virtual environment using mamba run `make mamba`. This will download micromamba and install Python 3.11 followed by all the packages 
