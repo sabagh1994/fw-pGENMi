@@ -1,5 +1,5 @@
-import csv
 import os
+import csv
 import shutil
 #from tempfile import mkdtemp
 import urllib.request
@@ -13,6 +13,9 @@ from math import log10, floor
 
 #from bs4 import BeautifulSoup
 from html.parser import HTMLParser
+
+from io_cfg import results_dir
+from io_cfg import make_abspath
 
 
 
@@ -447,5 +450,9 @@ if __name__ == "__main__":
     parser.add_argument('--NETWORK_DIR_PATH', default= './network/', type=str)
     parser.add_argument('--species_id', default= 9606, type=int)
     args = parser.parse_args()
-    main(args.NETWORK_DIR_PATH, args.species_id)
+    
+    # check for absolute vs relative path
+    NETWORK_DIR_PATH = args.NETWORK_DIR_PATH
+    NETWORK_DIR_PATH = make_abspath(NETWORK_DIR_PATH, results_dir)
+    main(NETWORK_DIR_PATH, args.species_id)
     
