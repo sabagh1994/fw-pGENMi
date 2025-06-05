@@ -71,7 +71,7 @@ This script runs `src/geneset_gen.py` with the config `configs/05_cfg_mediatorge
 
 **(C) Clustering and Survival Analysis**
 
-1. First you need to download the multi-omics profiles for TCGA COAD patients from [UCSAC Xena](https://xenabrowser.net/datapages/?cohort=GDC%20TCGA%20Colon%20Cancer%20(COAD)&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443). Once downloaded move all data to the same folder named `GDC_TCGA_COAD`.
+1. First you need to download the multi-omics profiles for TCGA COAD patients from [UCSC Xena](https://xenabrowser.net/datapages/?cohort=GDC%20TCGA%20Colon%20Cancer%20(COAD)&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443). Once downloaded move all data to the same folder named `GDC_TCGA_COAD`.
 The structure of this folder should look like the following. You can either move `GDC_TCGA_COAD` to `./input` directory or provide its relative path to the `./input` directory in the config file used for generating the input for clustering (`configs/06_cfg_coca_inputgen.yml`) as explained below.
    ```
    GDC_TCGA_COAD/
