@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Goto https://www.gencodegenes.org/#
-# From GENCODE website, however over data/human and select  GRCh37-mapped releases
+# From GENCODE website, however over data/human and select GRCh37-mapped releases
 # Select the newest version in GENCODE release column
 # Copy link from Comprehensive gene annotation for GTF file
 wget ftp://ftp.ebi.ac.uk/pub/databases/gencode/Gencode_human/release_27/GRCh37_mapping/gencode.v27lift37.annotation.gtf.gz
