@@ -5,7 +5,26 @@ It is assumed that peak calling has been performed on the raw data.
 ### Summary
 Make sure the following steps have been done before preprocessing.
 1. Install [bedtools](https://github.com/sabagh1994/fw-pGENMi/tree/master/README.md#make-venv)
-2. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/blob/master/README.md#download-data)** to download the multi-omics data. The downloaded data will be stored at `preprocess/data` directory.
+2. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/blob/master/README.md#download-data)** to download the multi-omics data. The downloaded data will be stored at `preprocess/data` directory. The structure of this directory is represented partially below.
+    ```
+    preprocess/data/
+    ├── ATAcSeq
+    │   ├── M0_1101
+    │   │   ├── M0_1101.#_hg19_q30_macs_peaks.narrowPeak
+    │   │
+    │   ├── M6_1101
+    │       ├── M6_1101.#_hg19_q30_macs_peaks.narrowPeak
+    │
+    ├── deseq2
+    │   └── p0vsp6_DESeq_processed
+    ├── K27ac
+    │   ├── Rep1
+    │   │   ├── P6-#_macs2_peaks.encodePeak
+    │   │   └── SW480-#_macs2_peaks.encodePeak
+    │   └── Rep2
+    ├── K27me3
+    │   ├── Rep1
+    ```
 3. Run the preprocessing as explained below. 
 
 ### Preprocessing
