@@ -1,3 +1,8 @@
+''' The functions in this script have been adpated from, 
+    https://knoweng.github.io 
+    https://github.com/KnowEnG
+'''
+
 import os
 import csv
 import shutil
