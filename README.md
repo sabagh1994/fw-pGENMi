@@ -95,21 +95,21 @@ GDC_TCGA_COAD/
 ```
 
 2. Run `src/04_coca.sh` to generate inputs for clustering using different sets of mediator genes, cluster the multi-omics profiles of TCGA COAD patients and perform survival analysis for each cluster of patients. This is done by running the following scripts,\
-   a. `scr/coca_inputgen.py` using config `configs/06_cfg_coca_inputgen.yml`. Generates different input files by subsetting the multi-omics profiles to different gene sets. For details please read the paper.
-   b. `scr/KnowEng.py` using config `results/coca_results/network`. Downloads the biological knowledge network for homo sapiens, which is used for network-guided clustering of somatic mutation profiles. The networks will be stored at `results/coca_results/network`.
-   c. `scr/coca_analysis.py` using config `configs/07_cfg_coca_analysis.yml`. Performs clustering of multi-omics profiles subset to varying gene signatures followed by survival analysis on the derived clusters. Different parameters for clustering such as number of clusters and degree of network smoothing can be explored.
-   d. `src/coca_stats_aggr.py` using config `configs/08_cfg_coca_aggr.yml`. Aggregate the results of clustering and survival analysis in (c) performed with different settings.
+   **a.** `scr/coca_inputgen.py` using config `configs/06_cfg_coca_inputgen.yml`. Generates different input files by subsetting the multi-omics profiles to different gene sets. For details please read the paper.\
+   **b.** `scr/KnowEng.py` using config `results/coca_results/network`. Downloads the biological knowledge network for homo sapiens, which is used for network-guided clustering of somatic mutation profiles. The networks will be stored at `results/coca_results/network`.\
+   **c.** `scr/coca_analysis.py` using config `configs/07_cfg_coca_analysis.yml`. Performs clustering of multi-omics profiles subset to varying gene signatures followed by survival analysis on the derived clusters. Different parameters for clustering such as number of clusters and degree of network smoothing can be explored.\
+   **d.** `src/coca_stats_aggr.py` using config `configs/08_cfg_coca_aggr.yml`. Aggregate the results of clustering and survival analysis in (c) performed with different settings.
 
 ### Input Evidence File Format
 
 ### Paths in the Config Files
 To run the exact pipeline in **Step 5** on your own input evidence file, the following requirements should be met,
 1. The input evidence files should have the same directory architecture as the `input` folder. The directory structure is
-   `{evid_rootdir}/{evid_type}/{dist}/{dirc}/H*_{dirc}`, where
-   a. evid_rootdir is the root directory to all evidence types.
-   b. evid_type is the directpry named by the evidence type $\in$ {TFBS_DiffMark, TFBS_only, TFBS_DiffACC, etc}\
-   c. dist is the directory named by the regulatory distance $\in$ {10Kb, 50Kb, 200Kb, 1Mb}\
-   d. dirc is the directory named by the direction of analysis $\in$ {up, down}
+   `{evid_rootdir}/{evid_type}/{dist}/{dirc}/H*_{dirc}`, where\
+   **a.** evid_rootdir is the root directory to all evidence types.\
+   **b.** evid_type is the directpry named by the evidence type $\in$ {TFBS_DiffMark, TFBS_only, TFBS_DiffACC, etc}\
+   **c.** dist is the directory named by the regulatory distance $\in$ {10Kb, 50Kb, 200Kb, 1Mb}\
+   **d.** dirc is the directory named by the direction of analysis $\in$ {up, down}
    Note that you should always provide absolute path to the `evid_rootdir` or its relative path to the `input` folder in the cloned repo.
    
 2. By default the results of all runs will be stored at the `./results` directory. To set a different path, you should update the configs
