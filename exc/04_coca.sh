@@ -15,13 +15,13 @@ PROJPATH=$SCRIPT_PATH/..
 source $PROJPATH/activate venv
 
 # Step 1:
-python $PROJPATH/src/coca_inputgen.py --config_path $PROJPATH/configs/06_cfg_coca_inputgen.yml
+python $PROJPATH/fwpgenmi/coca_inputgen.py --config_path $PROJPATH/configs/06_cfg_coca_inputgen.yml
 
 # Step 2: 
-python $PROJPATH/src/KnowEng.py --NETWORK_DIR_PATH $PROJPATH/results/coca_results/network --species_id 9606
+python $PROJPATH/fwpgenmi/KnowEng.py --NETWORK_DIR_PATH $PROJPATH/results/coca_results/network --species_id 9606
 
 # Step 3: 
-python $PROJPATH/src/coca_analysis.py --config_path $PROJPATH/configs/07_cfg_coca_analysis.yml
+python $PROJPATH/fwpgenmi/coca_analysis.py --config_path $PROJPATH/configs/07_cfg_coca_analysis.yml
 
 # Step 4:
-python $PROJPATH/src/coca_stats_aggr.py --config_path $PROJPATH/configs/08_cfg_coca_aggr.yml
+python $PROJPATH/fwpgenmi/coca_stats_aggr.py --config_path $PROJPATH/configs/08_cfg_coca_aggr.yml

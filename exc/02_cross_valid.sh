@@ -20,23 +20,23 @@ then
     # pgenmi
     # Step 1:
     echo "Performing CV on $modeltype"
-    python $PROJPATH/src/cv_pgenmi.py --config_path $PROJPATH/configs/01_cfg_cv_pgenmi_H1.yml # H1 variant
-    python $PROJPATH/src/cv_pgenmi.py --config_path $PROJPATH/configs/01_cfg_cv_pgenmi_H0.yml # H0 variant
+    python $PROJPATH/fwpgenmi/cv_pgenmi.py --config_path $PROJPATH/configs/01_cfg_cv_pgenmi_H1.yml # H1 variant
+    python $PROJPATH/fwpgenmi/cv_pgenmi.py --config_path $PROJPATH/configs/01_cfg_cv_pgenmi_H0.yml # H0 variant
     
     # Step 2:
     echo "Aggregating CV results, training the final model, and ranking TFs for $modeltype"
-    python $PROJPATH/src/cvaggr_tr_evidrank.py --config_path $PROJPATH/configs/03_cfg_cvaggr_tr_evidrank_pgenmi.yml
+    python $PROJPATH/fwpgenmi/cvaggr_tr_evidrank.py --config_path $PROJPATH/configs/03_cfg_cvaggr_tr_evidrank_pgenmi.yml
 elif [[ $modeltype == fwpgenmi ]]
 then
     # fwpgenmi
     # Step 1:
     echo "Performing CV on $modeltype"
-    python $PROJPATH/src/cv_fwpgenmi.py --config_path $PROJPATH/configs/02_cfg_cv_fwpgenmi_H1.yml # H1 variant
-    python $PROJPATH/src/cv_fwpgenmi.py --config_path $PROJPATH/configs/02_cfg_cv_fwpgenmi_H0.yml # H0 variant
+    python $PROJPATH/fwpgenmi/cv_fwpgenmi.py --config_path $PROJPATH/configs/02_cfg_cv_fwpgenmi_H1.yml # H1 variant
+    python $PROJPATH/fwpgenmi/cv_fwpgenmi.py --config_path $PROJPATH/configs/02_cfg_cv_fwpgenmi_H0.yml # H0 variant
 
     # Step 2:
     echo "Aggregating CV results, training the final model, and ranking TFs for $modeltype"
-    python $PROJPATH/src/cvaggr_tr_evidrank.py --config_path $PROJPATH/configs/04_cfg_cvaggr_tr_evidrank_fwpgenmi.yml
+    python $PROJPATH/fwpgenmi/cvaggr_tr_evidrank.py --config_path $PROJPATH/configs/04_cfg_cvaggr_tr_evidrank_fwpgenmi.yml
 else
     echo "$modeltype is invalid."
 fi
