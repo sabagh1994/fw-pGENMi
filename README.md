@@ -105,7 +105,7 @@ The structure of this folder should look like the following. You can either move
    **d.** `src/coca_stats_aggr.py` using config `configs/08_cfg_coca_aggr.yml`. Aggregate the results of clustering and survival analysis in (c) performed with different settings.
 
 ### Input Evidence File Format
-All input evidence files are tab-delimited and start with the column names starting from DE pvalue of genes. The format is shown by evidence type below.
+All input evidence files are tab-delimited and begin with the column names starting from DE pvalue of genes. The format is shown by evidence type below.
 
 **TFBS_DiffMark**
 Columns are DE pvalue (PVAL), constant (CONST), [TF_mark_up, TF_mark_down] for all (TF, mark) pairs. Each row contains the regulatory evidence of a gene.
