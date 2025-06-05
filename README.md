@@ -59,6 +59,16 @@ Run `./exc/02_cross_valid.sh pgenmi`, or `./exc/02_cross_valid.sh fwpgenmi`. Thi
 2. Aggregate the cross validation results to pick the best hyperparameter setting, training the model on the best setting, and ranking the TFs.
    This is done by running `scr/cvaggr_tr_evidrank.py` using the config `configs/03_cfg_cvaggr_tr_evidrank_{model_type}.yml`.
 
+**Get the Mediator Genes**
+
+Run `./exc/03_mediator_geneset.sh` to get sets of genes mediating the impact of TFs on the phenotype, e.g., cancer progression. 
+Mediator genes are chosen based on post odds ratio (POR) or Ratio of Post Odds Ratio (RPOR). Read the paper for a detailed explanation of these two criteria.
+This script runs `src/geneset_gen.py` with the config `configs/05_cfg_mediatorgene.yml` to generate mediator gene sets.
+
+**Clustering and Survival Analysis**
+
+To cluster the multi-omics profiles of TCGA COAD cohort 
+
 ### Input Evidence File Format
 
 ### Paths in the Config Files
