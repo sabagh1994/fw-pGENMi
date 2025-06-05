@@ -4,9 +4,9 @@ import random
 import numpy as np
 import torch.nn as nn
 
-from fwpgenmi import PGM_LL, estep, mstep
-from fwpgenmi import get_file_dims, load_data, partition_data
-from io_cfg import results_dir, input_dir, make_abspath
+from fwpgenmi.fwpgenmi import PGM_LL, estep, mstep
+from fwpgenmi.fwpgenmi import get_file_dims, load_data, partition_data
+from fwpgenmi.io_cfg import results_dir, input_dir, make_abspath
 
 
 def train_wrapper(indir='input', outdir='pgenmi_final_results', regul_=10, dirc='up', 

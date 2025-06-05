@@ -4,9 +4,9 @@ import random
 import numpy as np
 import pandas as pd
 
-from fwpgenmi import PGM_LL, PGM_LL_FW, estep
-from fwpgenmi import get_file_dims, load_data
-from io_cfg import results_dir, input_dir, make_abspath
+from fwpgenmi.fwpgenmi import PGM_LL, PGM_LL_FW, estep
+from fwpgenmi.fwpgenmi import get_file_dims, load_data
+from fwpgenmi.io_cfg import results_dir, input_dir, make_abspath
 
 def posteriorOddsRatio(post_zg1):
     '''

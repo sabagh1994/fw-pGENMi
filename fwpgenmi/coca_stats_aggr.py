@@ -1,7 +1,8 @@
 import argparse
 import pandas as pd
-from io_cfg import results_dir, input_dir
-from io_cfg import make_abspath, read_yaml
+
+from fwpgenmi.io_cfg import results_dir, input_dir
+from fwpgenmi.io_cfg import make_abspath, read_yaml
 
 # -------------------------------- #
 #        Get the Arguments         #

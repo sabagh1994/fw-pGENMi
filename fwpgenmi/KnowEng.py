@@ -14,10 +14,7 @@ from math import log10, floor
 #from bs4 import BeautifulSoup
 from html.parser import HTMLParser
 
-from io_cfg import results_dir
-from io_cfg import make_abspath
-
-
+from fwpgenmi.io_cfg import results_dir, make_abspath
 
 REDIS_PARAMS = {
     'host': 'knowredis.knoweng.org',

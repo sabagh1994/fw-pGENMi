@@ -3,7 +3,7 @@ import math
 import operator
 import pandas as pd
 from collections import defaultdict
-from io_cfg import results_dir, make_abspath
+from fwpgenmi.io_cfg import results_dir, make_abspath
 
 def cv_aggregator(indir='cv_results', outdir='cv_aggr_results', config_dict= None):
     

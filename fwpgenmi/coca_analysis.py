@@ -14,11 +14,11 @@ from lifelines.statistics import multivariate_logrank_test
 from knspreadsheetstransformation.spreadsheets_transformation_toolbox import \
     get_cluster_binary_dataframe
 
-from KnowEng import do_clustering, fetch_network, fetch_network_metadata
-from KnowEng import get_path_to_newest_file_having_prefix, round_to_1
+from fwpgenmi.KnowEng import do_clustering, fetch_network, fetch_network_metadata
+from fwpgenmi.KnowEng import get_path_to_newest_file_having_prefix, round_to_1
 
-from io_cfg import results_dir, input_dir
-from io_cfg import make_abspath, read_yaml
+from fwpgenmi.io_cfg import results_dir, input_dir
+from fwpgenmi.io_cfg import make_abspath, read_yaml
 # -------------------------------- #
 #        Get the Arguments         #
 # -------------------------------- #

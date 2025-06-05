@@ -8,10 +8,11 @@ import numpy as np
 import torch.nn as nn
 from itertools import product
 
-from io_cfg import results_dir, input_dir
-from io_cfg import make_abspath, read_yaml
-from fwpgenmi import PGM_LL_FW, estep, mstep
-from fwpgenmi import get_file_dims, load_data, partition_data
+from fwpgenmi.io_cfg import results_dir, input_dir
+from fwpgenmi.io_cfg import make_abspath, read_yaml
+
+from fwpgenmi.fwpgenmi import PGM_LL_FW, estep, mstep
+from fwpgenmi.fwpgenmi import get_file_dims, load_data, partition_data
 
 # -------------------------------- #
 #        Get the Arguments         #

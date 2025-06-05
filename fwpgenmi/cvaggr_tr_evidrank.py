@@ -1,12 +1,12 @@
 import argparse
 import pandas as pd
 
-import train_pgenmi, train_fwpgenmi
 from cv_aggr import cv_aggregator
 from evid_rank import evidence_ranker
+import fwpgenmi.train_pgenmi, fwpgenmi.train_fwpgenmi
 
-from io_cfg import results_dir, input_dir
-from io_cfg import make_abspath, read_yaml
+from fwpgenmi.io_cfg import results_dir, input_dir
+from fwpgenmi.io_cfg import make_abspath, read_yaml
 
 # -------------------------------- #
 #        Get the Arguments         #

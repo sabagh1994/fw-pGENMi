@@ -3,9 +3,9 @@ import torch
 import numpy as np
 import pandas as pd
 
-from io_cfg import results_dir, input_dir, make_abspath
-from fwpgenmi import PGM_LL, PGM_LL_FW, estep
-from fwpgenmi import get_file_dims, load_data
+from fwpgenmi.fwpgenmi import PGM_LL, PGM_LL_FW, estep
+from fwpgenmi.fwpgenmi import get_file_dims, load_data
+from fwpgenmi.io_cfg import results_dir, input_dir, make_abspath
 
 def evidence_ranker(evid_dir='input', trained_model_dir='fwpgenmi_final_results', outdir='evid_significance',
                     output_file= None, evid_type='TFBS_DiffMark', dist='50Kb', dirc='up', 

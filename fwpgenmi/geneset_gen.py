@@ -18,9 +18,9 @@ import numpy as np
 import pandas as pd
 from collections import defaultdict
 
-from io_cfg import results_dir, input_dir
-from io_cfg import make_abspath, read_yaml
-from mediator_genes import mediator_gene_run
+from fwpgenmi.io_cfg import results_dir, input_dir
+from fwpgenmi.io_cfg import make_abspath, read_yaml
+from fwpgenmi.mediator_genes import mediator_gene_run
 
 
 # -------------------------------- #
