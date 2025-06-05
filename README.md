@@ -1,6 +1,8 @@
 # An Integrated Multi-Omics Approach to Identify Regulatory Mechanisms in Cancer Metastatic Processes
 
-This repository contains the code used for ["An integrated multi-omics approach to identify regulatory mechanisms in cancer metastatic processes"](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02213-x), published in Genome Biology 2021.
+This repository contains the code used for ["An integrated multi-omics approach to identify regulatory mechanisms in cancer metastatic processes"](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02213-x), published in Genome Biology 2021.\
+Both [pGENMi](https://genome.cshlp.org/content/28/8/1207.short) and [factorized-weighted pGENMi (fw-pGENMi)](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-02213-x) have been implemented in PyTorch.
+
 ## Summary
 To get familiar with the study design and be able to reproduce it on a different multi-omics dataset, the following steps should be performed in the given order,
 1) Clone the repository to create a local copy of it on your machine.
@@ -170,32 +172,4 @@ To run the exact pipeline in **Step 5** on your own input evidence file, the fol
 2. By default the results of all runs will be stored at the `./results` directory. To set a different path, you should update the configs
    with the abosolute path to your desired directory or its relative path to `./results` in the cloned repo.
 
-See the config files for full instructions.
-   
-
-
-<!--- # Data:
-
-To get the processed evidence files used as the input of pgenmi/fwpgenmi
-download, wget, ... . This will result in a folder named "input" in the fw-pgenmi folder.
-
-notes on the hierarchy of evidence files input/(evidence_type_name)/(evidence_distance)/(direction_of_analysis)/H0_(direction_of_analysis) or H1_(direction_of_analysis) 
-
-also some instructions on the format of the input (inluding the column tags TF_mark_direction) that the mark order should not change 
-
-# Step 1: Cross Validation:
-
-Cross validation is required to find the best evidence distance and regularization coefficient for each evidence type.
-To do cross validation for pgenmi navigate to pgenmi folder (cd pgenmi).
-To do cross validation for fwpgenmi navigate to fwpgenmi folder (cd fwpgenmi).
-
-After cross validation the model is trained on the entire dataset which is then used to rank the transcription factors underlying the cancer progression.
-
-# Step 2: Getting mediator genes:
-
-After training the model in step 1, navigate to mediator_genest folder to get the genes mediating the impact of transcription factors on the phenotype, e.g. cancer progression. This can be done based on Posterior Odds Ratio (POR) or Ratio of Posterior Odds Ratios (RPORs).
-
-# Step 3: Survival Analysis:
-
-To cluster multi-omics profiles of TCGA-COAD (colorectal cancer) patients, navigate to coca folder. Most of the functions used for this step are adapted from https://knoweng.github.io.
--->
+See the config files (`./configs`) for full instructions.
