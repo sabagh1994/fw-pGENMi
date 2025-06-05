@@ -42,4 +42,4 @@ Preprocessing should be done in the following order,
    
 6. **Intersect Mark and TF Binding Site.** `cd 04_epi_analysis/02_intersect_tfbs` then run `./runme.sh`. Intersection of **Step4** (diffmark, presmark) with TF binsing sites computed at varying regulatory distances from **Step 3** followed by binarizing the evidence.
    
-7. `05_inputgen`: generating the final input files by aggregating the evidence over all TFs per evidence type, DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc.
+7. **Input Evidence File.** `cd 05_inputgen` then run `runme.sh`. Aggregate the evidence over all TFs, then combines it with DE gene p-values - adjusted for the direction of analysis - to generate the final input files per evidence type $\in$ {DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc}.
