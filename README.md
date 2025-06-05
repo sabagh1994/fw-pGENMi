@@ -34,6 +34,7 @@ You need to create your own environment with the required packages installed. Th
 
 To activate the virtual environments run `./activate venv` or `./activate mamba` depending on the way the environment was created.
 
+<a id="download-data"></a>
 ## Step 3. Download the Data
 Run `./exc/01_data_download.sh` to download the following data from google drive,
 1. Input evidence files to train pgenmi/fwpgenmi models. The evidence files are separated by evidence type, e.g., TFBS_DiffMark,
