@@ -51,7 +51,7 @@ Note that performing preprocessing from scratch is not required for the next ste
 Before training the models using the configs in `configs` directory, make sure that the input evidence files are located at `./input` and divided by evidence type. Downloading the data in **Step 3** directly saves the input files to `./input` directory. All the scripts for this step are located at `./exc` directory. These bash scripts run python codes that are configured with config files located at `./configs` directory.\
 
 
-**Cross validation and TF Rankings.**
+**(A) Cross validation and TF Rankings.**
 
 Run `./exc/02_cross_valid.sh pgenmi`, or `./exc/02_cross_valid.sh fwpgenmi`. This script performs,
 1. cross validation for different values of two hyperparameters, regulatory distance and $L_2$-regularization coefficient. This is done by running `src/cv_pgenmi.py`
@@ -59,15 +59,46 @@ Run `./exc/02_cross_valid.sh pgenmi`, or `./exc/02_cross_valid.sh fwpgenmi`. Thi
 2. Aggregate the cross validation results to pick the best hyperparameter setting, training the model on the best setting, and ranking the TFs.
    This is done by running `scr/cvaggr_tr_evidrank.py` using the config `configs/03_cfg_cvaggr_tr_evidrank_{model_type}.yml`.
 
-**Get the Mediator Genes**
+**(B) Get the Mediator Genes**
 
 Run `./exc/03_mediator_geneset.sh` to get sets of genes mediating the impact of TFs on the phenotype, e.g., cancer progression. 
 Mediator genes are chosen based on post odds ratio (POR) or Ratio of Post Odds Ratio (RPOR). Read the paper for a detailed explanation of these two criteria.
 This script runs `src/geneset_gen.py` with the config `configs/05_cfg_mediatorgene.yml` to generate mediator gene sets.
 
-**Clustering and Survival Analysis**
+**(C) Clustering and Survival Analysis**
 
-To cluster the multi-omics profiles of TCGA COAD cohort 
+1. First you need to download the multi-omics profiles for TCGA COAD patients from [UCSAC Xena](https://xenabrowser.net/datapages/?cohort=GDC%20TCGA%20Colon%20Cancer%20(COAD)&removeHub=https%3A%2F%2Fxena.treehouse.gi.ucsc.edu%3A443). Once downloaded move all data to the same folder named `GDC_TCGA_COAD`.
+The structure of this folder should look like the following. You can either move `GDC_TCGA_COAD` to `./input` directory or provide its relative path to the `./input` directory in the config file used for generating the input for clustering (`configs/06_cfg_coca_inputgen.yml`) as explained below.
+```
+GDC_TCGA_COAD/
+├── CopyNo_segment
+│   └── TCGA-COAD.masked_cnv.tsv
+├── Gene_Expr
+│   ├── RNA-seq_Counts
+│   │   ├── gencode.v22.annotation.gene.probeMap
+│   │   └── TCGA-COAD.htseq_counts.tsv
+│   └── RNA-seq_FPKM
+│       ├── gencode.v22.annotation.gene.probeMap
+│       └── TCGA-COAD.htseq_fpkm.tsv
+├── Methyl_450
+│   ├── illuminaMethyl450_hg38_GDC
+│   └── TCGA-COAD.methylation450.tsv
+├── miRNA
+│   ├── hsa_MTI.xlsx
+│   ├── mir_gene_target.csv
+│   └── TCGA-COAD.mirna.tsv
+├── Phenotype_Survival
+│   ├── TCGA-COAD.GDC_phenotype.tsv
+│   └── TCGA-COAD.survival.tsv
+└── Somatic_MuSEVariantAggr
+    └── TCGA-COAD.muse_snv.tsv
+```
+
+2. Run `src/04_coca.sh` to generate inputs for clustering using different sets of mediator genes, cluster the multi-omics profiles of TCGA COAD patients and perform survival analysis for each cluster of patients. This is done by running the following scripts,\
+   a. `scr/coca_inputgen.py` using config `configs/06_cfg_coca_inputgen.yml`. Generates different input files by subsetting the multi-omics profiles to different gene sets. For details please read the paper.
+   b. `scr/KnowEng.py` using config `results/coca_results/network`. Downloads the biological knowledge network for homo sapiens, which is used for network-guided clustering of somatic mutation profiles. The networks will be stored at `results/coca_results/network`.
+   c. `scr/coca_analysis.py` using config `configs/07_cfg_coca_analysis.yml`. Performs clustering of multi-omics profiles subset to varying gene signatures followed by survival analysis on the derived clusters. Different parameters for clustering such as number of clusters and degree of network smoothing can be explored.
+   d. `src/coca_stats_aggr.py` using config `configs/08_cfg_coca_aggr.yml`. Aggregate the results of clustering and survival analysis in (c) performed with different settings.
 
 ### Input Evidence File Format
 
