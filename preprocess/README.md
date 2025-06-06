@@ -58,10 +58,42 @@ After running, the content of `03_overlap/encode_gencode` should include the fol
     ```
 
 4. **Epigenetic Marks.** `cd 04_epi_analysis/01_bedtools_mark_acc` then run `./runme.sh` which,\
-   **i.** intersects the replicate measurements for each histone mark/accessibility peaks for each stage of metastasis ($P_0$, noninvasive - $P_6$, metastatic)\
-   **ii.** Finding the differential mark peaks locations, i.e., gain or loss of peak in transitioning from $P_0$ to $P_6$ (diffmark), as well as the
+   **(i).** intersects the replicate measurements for each histone mark/accessibility peaks for each stage of metastasis ($P_0$, noninvasive - $P_6$, metastatic). The directory structure should look like the following after running,
+
+    ```
+    04_epi_analysis/01_bedtools_mark_acc/
+    ├── final
+    │   ├── bed5
+    │   │   └── all
+    │   │       ├── K27ac.bed (similar for other histone marks and accessibility)
+    │   │       
+    │   └── narrowPeak
+    │       └── all
+    │           ├── K27ac.narrowPeak (similar for other histone marks and accessibility)
+    |
+    ├── K27ac (similar structure for other histone marks and accessibility)
+    │   ├── final
+    │   │   ├── de_p0_p6.final.narrowPeak
+    │   │   ├── de_p0_p6.final.ranked.peak.narrowPeak
+    │   │   ├── p0.exclusive.narrowPeak
+    │   │   └── p6.exclusive.narrowPeak
+    │   ├── p0
+    │   │   ├── p0_intersection.final
+    │   │
+    │   ├── p6
+    │   │   ├── p6_intersection.final
+    │   │
+    │   └── union
+    │       └── p0_p6.union.NarrowPeak
+    └── Union
+        ├── K27ac.bed (similar for other histone marks and accessibility)
+    
+    ```
+
+   
+   **(ii).** Finding the differential mark peaks locations, i.e., gain or loss of peak in transitioning from $P_0$ to $P_6$ (diffmark), as well as the
       presence of mark in either of the stages (presmark). Here "mark" stands for both histone mark and accessibility peaks.
    
-5. **Intersect Mark and TF Binding Site.** `cd 04_epi_analysis/02_intersect_tfbs` then run `./runme.sh`. Intersection of **Step4** (diffmark, presmark) with TF binsing sites computed at varying regulatory distances from **Step 3** followed by binarizing the evidence.
+6. **Intersect Mark and TF Binding Site.** `cd 04_epi_analysis/02_intersect_tfbs` then run `./runme.sh`. Intersection of **Step4** (diffmark, presmark) with TF binsing sites computed at varying regulatory distances from **Step 3** followed by binarizing the evidence.
    
 7. **Input Evidence File.** `cd 05_inputgen` then run `runme.sh`. Aggregate the evidence over all TFs, then combines it with DE gene p-values - adjusted for the direction of analysis - to generate the final input files per evidence type $\in$ {DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc}.
