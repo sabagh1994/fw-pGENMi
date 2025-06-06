@@ -25,7 +25,38 @@ Make sure the following steps have been done before preprocessing.
     ├── K27me3
     │   ├── Rep1
     ```
-3. Run the preprocessing as explained below. 
+3. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/blob/master/README.md#download-data)** to download the output files of some preprocessing stages. The downloaded data will be stored at `preprocess/preprocess_stages_outfiles` with the following directory structure,
+    ```
+    preprocess/preprocess_stages_outfiles
+    ├── 01_gencode
+    │   └── protein_coding_genes.list
+    ├── 02_encode
+    │   └── tfs.bed10.sorted
+    ├── 03_overlap
+    │   └── encode_gencode
+    │       ├── tfs_protein_coding_10Kb.bed10.sorted
+    │       ├── tfs_protein_coding_1Mb.bed10.sorted
+    │       ├── tfs_protein_coding_200Kb.bed10.sorted
+    │       └── tfs_protein_coding_50Kb.bed10.sorted
+    └── 04_epi_analysis
+        └── 01_bedtools_mark_acc
+            ├── final
+            │   └── bed5
+            │       └── all
+            │           ├── ACC.bed
+            │           ├── K27ac.bed
+            │           ├── K27me3.bed
+            │           ├── K4me1.bed
+            │           └── K4me3.bed
+            └── Union
+                ├── ACC.bed
+                ├── K27ac.bed
+                ├── K27me3.bed
+                ├── K4me1.bed
+                └── K4me3.bed
+    ```
+   
+4. Run the preprocessing as explained below. 
 
 ### Preprocessing
 Preprocessing should be done in the following order,
