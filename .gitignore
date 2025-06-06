@@ -8,6 +8,7 @@ evidence_aggregator.ipynb
 mynotes
 *.tar.gz
 *.tar
+preprocess_stages_outfiles
 
 *.aux
 *.bbl
