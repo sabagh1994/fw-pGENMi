@@ -4,7 +4,7 @@ It is assumed that peak calling has been performed on the raw data.
 
 ### Summary
 Make sure the following steps have been done before preprocessing.
-1. Install [bedtools](https://github.com/sabagh1994/fw-pGENMi/tree/master/README.md#make-venv)
+1. Install [bedtools](https://github.com/sabagh1994/fw-pGENMi/tree/master/README.md#make-venv).
 2. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/blob/master/README.md#download-data)** to download the multi-omics data. The downloaded data will be stored at `preprocess/data` directory. The structure of this directory is represented partially below.
     ```
     preprocess/data/
