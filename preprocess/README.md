@@ -25,7 +25,7 @@ Make sure the following steps have been done before preprocessing.
     ├── K27me3
     │   ├── Rep1
     ```
-3. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/blob/master/README.md#download-data)** to download the output files of some preprocessing stages. The downloaded data will be stored at `preprocess/preprocess_stages_outfiles` with the following directory structure,
+3. Follow the guide in **[Step 3. Download the Data](https://github.com/sabagh1994/fw-pGENMi/blob/master/README.md#download-data)** to download the output files of some preprocessing stages. The downloaded data will be stored at `preprocess/preprocess_stages_outfiles` with the following directory structure. These files will be generated as part of preprocessing and are provided here for comparison.
     ```
     preprocess/preprocess_stages_outfiles
     ├── 01_gencode
@@ -55,7 +55,6 @@ Make sure the following steps have been done before preprocessing.
                 ├── K4me1.bed
                 └── K4me3.bed
     ```
-   
 4. Run the preprocessing as explained below. 
 
 ### Preprocessing
