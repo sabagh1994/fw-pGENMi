@@ -37,10 +37,10 @@ gdown $EVIDID
 tar -xzf evidences.tar.gz
 rm evidences.tar.gz
 
-# -------------------------------------------------------------------------- # 
-#      Get the raw data containing histone mark peaks, ATACseq, DE genes     #
-# -------------------------------------------------------------------------- #
-echo "Downloading the raw data for preprocessing from google drive ..."
+# ------------------------------------------------------------------------------- # 
+#    Get the multi-omics data containing histone mark peaks, ATACseq, DE genes    #
+# ------------------------------------------------------------------------------- #
+echo "Downloading the multi-omics data for preprocessing from google drive ..."
 mkdir -p $PROJPATH/preprocess/data
 cd $PROJPATH/preprocess/data
 RAWID="1hnqe0hfHRoHF_01uU8jhP0gFLFnCjIy8"
@@ -49,3 +49,13 @@ gdown $RAWID
 #if ! md5sum -c input.md5; then echo "corrupted files"; fi
 tar -xzf rawdata.tar.gz
 rm rawdata.tar.gz
+
+# -------------------------------------------------- # 
+#     Output files of some preprocessing stages      #
+# -------------------------------------------------- #
+echo "Downloading output files for some preprocessing stages ..."
+cd $PROJPATH/preprocess
+RAWID="1n6GTxuXaMlqP7icDha_JF_9dYL3reQ6e"
+gdown $RAWID
+tar -xzf preprocess_stages_outfiles.tar.gz
+rm preprocess_stages_outfiles.tar.gz

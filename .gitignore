@@ -6,6 +6,8 @@ sanity_checks
 evidence_aggregator.ipynb
 .coords.sh
 mynotes
+*.tar.gz
+*.tar
 
 *.aux
 *.bbl
