@@ -97,7 +97,6 @@ After running, the content of `03_overlap/encode_gencode` should include the fol
 5. **Intersect Mark and TF Binding Site.** `cd 04_epi_analysis/02_intersect_tfbs` then run `./runme.sh`. Intersection of **Step4** (diffmark, presmark) with TF binsing sites computed at varying regulatory distances from **Step 3** followed by binarizing the evidence. The directory structure after running looks like the following,
     ```
     04_epi_analysis/02_intersect_tfbs/
-    ├── get_max_by_tf.pl
     ├── intersections_diffmark
     │   ├── 10Kb (similar for other regulatory distances)
     │       ├── by_mark_10Kb
