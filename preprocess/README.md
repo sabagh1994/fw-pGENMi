@@ -34,12 +34,34 @@ Preprocessing should be done in the following order,
    ```
    chr1    91035   91451   CTCF    612     .       19.55880        -1.00000        5.12429 208
    ```
-4. **Overlap.** `cd 03_overlap`, then run `./runme1.sh` followed by `./runme2.sh`. Identifies TF binding sites overlapping with intergenic and intronic regions. Then associates TF binding sites with genes at varying regulatory distances 10Kb, 50Kb, 200Kb and 1Mb.
-5. **Epigenetic Marks.** `cd 04_epi_analysis/01_bedtools_mark_acc` then run `./runme.sh` which,\
-   **i.** intersects the replicate measurements for each histone mark/accessibility peaks for each stage of metastasis (p0, noninvasive - p6, metastatic)\
-   **ii.** Finding the differential mark peaks locations, i.e., gain or loss of peak in transitioning from p0 to p6 (diffmark), as well as the
+3. **Overlap.** `cd 03_overlap/encode_gencode`, then run `./runme1.sh` followed by `./runme2.sh`. Identifies TF binding sites overlapping with intergenic and intronic regions. Then associates TF binding sites with genes at varying regulatory distances 10Kb, 50Kb, 200Kb and 1Mb.
+After running, the content of `03_overlap/encode_gencode` should include the following files, where {dist} represents the regulatory distance.
+    ```
+    03_overlap/encode_gencode/
+    ├── coords
+    │   ├── tfs_intergenic_protein_coding_bed_coords.tsv
+    │   └── tfs_intron_protein_coding_bed_coords.tsv
+    │
+    ├── intersection
+    │   ├── coords
+    │   │   └── tfs_intergenic_protein_coding_closest_gene_coords.tsv
+    │   ├── tfs_intergenic_protein_coding.bed10
+    │   ├── tfs_intergenic_protein_coding.bed10.sorted
+    │   ├── tfs_intergenic_protein_coding_with_closest_gene_{dist}.bed10
+    │   ├── tfs_intergenic_protein_coding_with_closest_gene_{dist}.bed10.sorted
+    │   ├── tfs_intron_protein_coding.bed10
+    │   └── tfs_intron_protein_coding.bed10.sorted
+    │ 
+    ├── tfs_protein_coding_{dist}.bed10
+    ├── tfs_protein_coding_{dist}.bed10.sorted
+    
+    ```
+
+4. **Epigenetic Marks.** `cd 04_epi_analysis/01_bedtools_mark_acc` then run `./runme.sh` which,\
+   **i.** intersects the replicate measurements for each histone mark/accessibility peaks for each stage of metastasis ($P_0$, noninvasive - $P_6$, metastatic)\
+   **ii.** Finding the differential mark peaks locations, i.e., gain or loss of peak in transitioning from $P_0$ to $P_6$ (diffmark), as well as the
       presence of mark in either of the stages (presmark). Here "mark" stands for both histone mark and accessibility peaks.
    
-6. **Intersect Mark and TF Binding Site.** `cd 04_epi_analysis/02_intersect_tfbs` then run `./runme.sh`. Intersection of **Step4** (diffmark, presmark) with TF binsing sites computed at varying regulatory distances from **Step 3** followed by binarizing the evidence.
+5. **Intersect Mark and TF Binding Site.** `cd 04_epi_analysis/02_intersect_tfbs` then run `./runme.sh`. Intersection of **Step4** (diffmark, presmark) with TF binsing sites computed at varying regulatory distances from **Step 3** followed by binarizing the evidence.
    
 7. **Input Evidence File.** `cd 05_inputgen` then run `runme.sh`. Aggregate the evidence over all TFs, then combines it with DE gene p-values - adjusted for the direction of analysis - to generate the final input files per evidence type $\in$ {DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc}.
