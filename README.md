@@ -41,6 +41,7 @@ Run `./exc/01_data_download.sh` to download the following data from google drive
 1. Input evidence files to train pgenmi/fwpgenmi models. The evidence files are separated by evidence type, e.g., TFBS_DiffMark,
    regulatory distance, and direction of analysis. The files can be accessed at `./input` directory after download.
 2. Multi-omics data used to generate the inputs downloaded in (1). The data includes histone mark profiles, accessibility peaks and differential gene expression analysis for noninvasive (p0) and metastatic stages (p6). The data will be downloaded to `./preprocess/data` directory. Users interested in creating the input evidence files from scratch should download this data.
+3. The output files of some preprocessing stages. These files are separated by their preprocessing folder/stage and can be accessed at `./preprocess/preprocess_stages_outfiles`.
 
 **Note:** The *raw* data has been deposited to [NCBI Sequence Read Archive (SRA)-PRJNA659546](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA659546). But you only need the multi-omics data downloaded from google drive to generate the input evidence files. 
 
