@@ -102,7 +102,7 @@ After running, the content of `03_overlap/encode_gencode` should include the fol
     │       ├── by_mark_10Kb
     │       │   └── binary
     │       │       ├── K27ac
-    │       │           ├── ATF3
+    │       │           ├── ATF3 (similar for other TFs)
     │       │ 
     │       ├── coords_10Kb
     │       │   ├── K27ac.bed (similar for other marks)
