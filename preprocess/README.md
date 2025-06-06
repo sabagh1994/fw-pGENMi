@@ -94,6 +94,32 @@ After running, the content of `03_overlap/encode_gencode` should include the fol
    **(ii).** Finding the differential mark peaks locations, i.e., gain or loss of peak in transitioning from $P_0$ to $P_6$ (diffmark), as well as the
       presence of mark in either of the stages (presmark). Here "mark" stands for both histone mark and accessibility peaks.
    
-6. **Intersect Mark and TF Binding Site.** `cd 04_epi_analysis/02_intersect_tfbs` then run `./runme.sh`. Intersection of **Step4** (diffmark, presmark) with TF binsing sites computed at varying regulatory distances from **Step 3** followed by binarizing the evidence.
-   
-7. **Input Evidence File.** `cd 05_inputgen` then run `runme.sh`. Aggregate the evidence over all TFs, then combines it with DE gene p-values - adjusted for the direction of analysis - to generate the final input files per evidence type $\in$ {DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc}.
+5. **Intersect Mark and TF Binding Site.** `cd 04_epi_analysis/02_intersect_tfbs` then run `./runme.sh`. Intersection of **Step4** (diffmark, presmark) with TF binsing sites computed at varying regulatory distances from **Step 3** followed by binarizing the evidence. The directory structure after running looks like the following,
+    ```
+    04_epi_analysis/02_intersect_tfbs/
+    ├── get_max_by_tf.pl
+    ├── intersections_diffmark
+    │   ├── 10Kb (similar for other regulatory distances)
+    │       ├── by_mark_10Kb
+    │       │   └── binary
+    │       │       ├── K27ac
+    │       │           ├── ATF3
+    │       │ 
+    │       ├── coords_10Kb
+    │       │   ├── K27ac.bed (similar for other marks)
+    │       │ 
+    │       └── gene_sets_10Kb
+    │           ├── K27ac.bed (similar for other marks)
+    │           └── max_by_tf
+    │               ├── binary
+    │               │   ├── K27ac.bed (similar for other marks)
+    │               │   
+    │               └── continuous
+    │                   ├── K27ac.bed (similar for other marks)
+    │   
+    └── intersections_presmark (similar to intersections_diffmark)
+        ├── 10Kb
+    
+    ```
+
+6. **Input Evidence File.** `cd 05_inputgen` then run `runme.sh`. Aggregate the evidence over all TFs, then combines it with DE gene p-values - adjusted for the direction of analysis - to generate the final input files per evidence type $\in$ {DiffMark, DiffMarkAggr, DiffAcc, TFBS-only, PresMark and PresAcc}.
