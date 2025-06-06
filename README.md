@@ -12,11 +12,11 @@ To get familiar with the study design and be able to reproduce it on a different
 4) Preprocess the multi-omics data, downloaded from google drive in step 2, to create input files with different evidence types for pgenmi and fwpgenmi training. 
    Navigate to `preprocess` folder and follow the instructions.
 5) Run bash scripts in `exc` folder to perform,\
-   i. Cross-validation on pgenmi/fwpgenmi.\
-   ii. Train final models using the best hyper parameters setting (regulatory distance, $L_2$ regularization coefficient).\
-   iii. Rank the transcription factors for their association to phenotype, e.g., cancer progression in this study.\
-   iv. Derive gene sets mediating the impact of highly-ranked TFs on phenotype. These sets can be used as gene signatures in survival analysis.\
-   v. Cluster multi-omics profiles of TCGA COAD patients and perform survival analysis using the gene signatures derived from (iv).
+   (i). Cross-validation on pgenmi/fwpgenmi.\
+   (ii). Train final models using the best hyper parameters setting (regulatory distance, $L_2$ regularization coefficient).\
+   (iii). Rank the transcription factors for their association to phenotype, e.g., cancer progression in this study.\
+   (iv). Derive gene sets mediating the impact of highly-ranked TFs on phenotype. These sets can be used as gene signatures in survival analysis.\
+   (v). Cluster multi-omics profiles of TCGA COAD patients and perform survival analysis using the gene signatures derived from (iv).
 
 **Note:** The evidence input files used in this study are available on google drive (download by running `exc/01_data_download.sh`), so you can skip preprocessing the multi-omics data (Step 4).
 
@@ -42,7 +42,7 @@ Run `./exc/01_data_download.sh` to download the following data from google drive
    regulatory distance, and direction of analysis. The files can be accessed at `./input` directory after download.
 2. Multi-omics data used to generate the inputs downloaded in (1). The data includes histone mark profiles, accessibility peaks and differential gene expression analysis for noninvasive (p0) and metastatic stages (p6). The data will be downloaded to `./preprocess/data` directory. Users interested in creating the input evidence files from scratch should download this data.
 
-**Note** The *raw* data has been deposited to [NCBI Sequence Read Archive (SRA)-PRJNA659546](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA659546). But you only need the multi-omics data downloaded from google drive to generate the input evidence files. 
+**Note:** The *raw* data has been deposited to [NCBI Sequence Read Archive (SRA)-PRJNA659546](https://www.ncbi.nlm.nih.gov/sra/?term=PRJNA659546). But you only need the multi-omics data downloaded from google drive to generate the input evidence files. 
 
 ## Step 4. Preprocess the Multi-Omics Data
 Navigate to `preprocess` directory by running `cd preprocess`. Then follow the instructions to, 
@@ -142,10 +142,10 @@ ZZEF1   0.062        1                0                0                 0      
 To run the exact pipeline in **Step 5** on your own input evidence file, the following requirements should be met,
 1. The input evidence files should have the same directory architecture as the `input` folder shown below for a subset of regulatory distances. The directory structure is
    `{evid_rootdir}/{evid_type}/{dist}/{dirc}/H*_{dirc}`, where\
-   **a.** evid_rootdir is the root directory to all evidence types.\
-   **b.** evid_type is the directpry named by the evidence type $\in$ {TFBS_DiffMark, TFBS_only, TFBS_DiffACC, etc}\
-   **c.** dist is the directory named by the regulatory distance $\in$ {10Kb, 50Kb, 200Kb, 1Mb}\
-   **d.** dirc is the directory named by the direction of analysis $\in$ {up, down}
+   **(a).** evid_rootdir is the root directory to all evidence types.\
+   **(b).** evid_type is the directpry named by the evidence type $\in$ {TFBS_DiffMark, TFBS_only, TFBS_DiffACC, etc}\
+   **(c).** dist is the directory named by the regulatory distance $\in$ {10Kb, 50Kb, 200Kb, 1Mb}\
+   **(d).** dirc is the directory named by the direction of analysis $\in$ {up, down}
    Note that you should always provide absolute path to the `evid_rootdir` or its relative path to the `input` folder in the cloned repo.
    ```
    input/
