@@ -33,7 +33,7 @@ You need to create your own environment with the required packages installed. Th
 2. If instead you would like to use python venv, first you need to have python installed. Then run `make venv`.
 3. Bedtools is required for preprocessing. To install it run `make bedtools`.
 
-To activate the virtual environments run `./activate venv` or `./activate mamba` depending on the way the environment was created.
+To activate the virtual environments run `source ./activate venv` or `source ./activate mamba` depending on the way the environment was created.
 
 <a id="download-data"></a>
 ## Step 3. Download the Data
